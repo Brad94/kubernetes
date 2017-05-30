@@ -1,0 +1,28 @@
+sudo apt-get install juju
+juju add-credential aws
+access key
+secret key
+
+juju bootstrap aws/eu-west-1 kubes-demo #can change eu-west-1
+juju deploy canonical-kubernetes
+juju status
+
+mkdir -p ~/.kube
+juju scp kubernetes-master/0:config ~/.kube/config
+
+sudo snap install kubectl --classic
+sudo kubectl cluster-info
+
+ ./kubectl run ghost --image=ghost --port=2368
+ ./kubectl get pods
+ ./kubectl expose deployment ghost --type="NodePort"
+ ./kubectl describe service ghost
+
+
+#scale out
+ ./kubectl scale deployment ghost --replicas=4
+
+ https://jujucharms.com/canonical-kubernetes/
+ https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/
+ https://blog.codeship.com/getting-started-with-kubernetes/
+ https://kubernetes.io/docs/getting-started-guides/ubuntu/installation/#scale-out-cluster
